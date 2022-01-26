@@ -1,0 +1,1 @@
+from .affiliate_models import Site, InviteLink
