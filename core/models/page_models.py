@@ -18,6 +18,8 @@ class PageProperties(models.Model):
 	#content_type = models.ForeignKey(ContentType, related_name="content_type_timelines", null=True, on_delete=models.SET_NULL)
 	#object_id = models.PositiveIntegerField()
 	#content_object = GenericForeignKey('content_type', 'object_id')
+	
+	h1 = models.CharField(max_length=200, unique=True, default='')
 	head_title = models.CharField(verbose_name="Meta Title / Window Title", max_length=68, blank=False, null=False, unique=True)
 	meta_description = models.CharField(verbose_name="Meta Description", max_length=155, blank=False, null=False, unique=True)
 	meta_keywords = models.CharField(verbose_name="Meta Keywords", max_length=255, blank=False, null=False)
