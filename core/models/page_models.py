@@ -1,8 +1,9 @@
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
+from core.models import AuditModel
 
-class PageProperties(models.Model):
+class PageProperties(AuditModel):
 
 	ROBOTS_CHOICES = [
 		("index, follow","All"),
@@ -26,3 +27,4 @@ class PageProperties(models.Model):
 	#featured_image = models.ImageField(upload_to = upload_image_page_properties, default = 'service/no-img.png')
 	meta_robots = models.CharField(verbose_name="Meta Robots", max_length=100,choices = ROBOTS_CHOICES ,default=ROBOTS_CHOICES[0][0])
 	slug = models.CharField(max_length=1000, unique=True)
+
