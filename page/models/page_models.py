@@ -5,7 +5,7 @@ class Page(PageProperties):
     content = models.TextField()
 
     class Meta:
-        ordering = ['-created_on']
+        ordering = ['-created_at']
 
     def __str__(self):
         return self.h1
