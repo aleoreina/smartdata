@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from money_internet_affiliate.views import AffiliateRedirectPageView, BaseSitePageView
+from money_internet_affiliate.views import HomePageView
+from money_internet_affiliate.views.homepage import AffiliatePageView
 
 urlpatterns = [
-    path('', AffiliateRedirectPageView.as_view(), name="affiliate_redirect_page"),
-    path('base_site', BaseSitePageView.as_view(), name="base_site")
-
+    path('', HomePageView.as_view(), name="homepage"),
+    path('negocios-por-internet/columbustick', AffiliatePageView.as_view(), name="business-columbustick_profile"),
 ]

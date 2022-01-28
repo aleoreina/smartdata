@@ -1,0 +1,176 @@
+{% extends 'base_theme_user/main.html' %}
+
+    
+       
+{% block head_css_theme %}    
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+{% endblock head_css_theme %}
+
+
+{% block header_html_header_theme %}
+
+<style>
+nav.navbar.navbar-expand-sm.navbar-dark {
+    background: #0e0eb7 !important;
+}
+
+nav.navbar.navbar-expand-sm.navbar-dark div.container-fluid button.btn.btn-success.redirect_counter {
+    background: yellow;
+    color: black;
+}
+
+nav.navbar.navbar-expand-sm.navbar-dark div.container-fluid button.btn.btn-success.redirect_counter:hover {
+    border: 6px solid white;
+}
+
+html body main.container.mt-5 div.p-4.p-md-5.mb-4.text-white.rounded.bg-dark {
+    background: #090c77 !important;
+}
+.navbar_bottom_custom {
+  background: #090c77 !important;
+  text-align: center;
+  color: white !important;
+}
+
+</style>
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top" aria-label="Third navbar example">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Gana Dinero en Linea.com</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03"
+        aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample03">
+        <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+          {% comment %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+      
+
+            
+          <li class="nav-item">
+            <a class="nav-link" href="#">Tutoriales</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown"
+              aria-expanded="false">Manuales</a>
+            <ul class="dropdown-menu" aria-labelledby="dropdown03">
+              <li><a class="dropdown-item" href="#">ColumbusTick</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-danger" href="#">Reportar un Sitio Web</a>
+          </li>
+          {% endcomment %}
+        </ul>
+        <form class="d-flex">
+          <button class="btn btn-success redirect_counter" type="submit">Subscribete ya!</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+{% endblock header_html_header_theme %}
+
+{% block content_html_theme %}
+{% endblock content_html_theme %}
+
+{% block footer_html_header_theme %}
+<footer class="footer fixed-bottom navbar_bottom_custom">
+  <div class="container">
+    <span class="">Recuerde: Toda inversión rentable tiene su índice de riesgo.</span>
+  </div>
+</footer>
+
+<style>
+  .justify-text-gb {
+    text-align: justify !important;
+  }
+</style>
+<div id="TermsAndConditionsToUseWebSite" class="modal fade"  tabindex="-1">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="col-12 modal-title text-center">¡ Bienvenido Usuario !</h5>
+
+          </div>
+
+       
+          <div class="modal-body">
+            <div class="w-100 text-center fs-1"> 
+              <i class="bi bi-cash-coin"></i>
+              <i class="bi bi-emoji-smile text-center "></i>
+              <i class="bi bi-piggy-bank"></i>
+              <i class="bi bi-currency-bitcoin"></i>
+
+            </div>
+            
+              <p class="justify-text-gb">Recuerden siempre y como en cualquier negocio es primero retirar su capital y después si se desea seguir con las ganancias entonces es cuando la persona ya corre CERO RIESGO! Se los anticipamos para que después no haya reclamaciones de ningún tipo hacia nuestras personas como administradores del grupo por que solo somos eso. No somos CEOS ni dueños de ninguno de estos negocios que mostramos en esta pagina somos socios como ustedes aquí simplemente somos administradores de una comunidad que ayuda a otros a conseguir dinero. Así que cada quien toma sus riesgos.</p>
+           
+              <p class="text-secondary"><small class="justify-text-gb">Al presionar "Estoy de Acuerdo", Usted acepta todo los terminos de uso de este sitio y que usted asume sus propios riegos y responsabilidades de los negocios.</small></p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" onclick="Exit()">No estoy de acuerdo</button>
+              <button type="button" class="btn btn-primary i-am-agree-to-use-site" onclick="hideCookieBanner()">Estoy de acuerdo</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock footer_html_header_theme %}
+
+{% block footer_js_theme %}
+<script src="https://getbootstrap.com/docs/5.1/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+</script>
+<script>
+function Exit() {
+  window.location.href = "https://google.com";
+}
+
+var TermsOfUseOfSite = new bootstrap.Modal(document.getElementById("TermsAndConditionsToUseWebSite"), {backdrop: 'static', keyboard: false});
+/* Javascript to show and hide cookie banner using localstorage */
+/* Shows the Cookie banner */
+function showCookieBanner(){
+  TermsOfUseOfSite.show();
+}
+
+/* Hides the Cookie banner and saves the value to localstorage */
+function hideCookieBanner(){
+ localStorage.setItem("cb_isCookieAccepted", "yes");
+ TermsOfUseOfSite.hide();
+}
+
+/* Checks the localstorage and shows Cookie banner based on it. */
+function initializeCookieBanner(){
+ let isCookieAccepted = localStorage.getItem("cb_isCookieAccepted");
+ if(isCookieAccepted === null)
+ {
+  localStorage.setItem("cb_isCookieAccepted", "no");
+  showCookieBanner();
+ }
+ if(isCookieAccepted === "no"){
+  showCookieBanner();
+ }
+}
+
+var accept_use_this_site = document.getElementsByClassName('i-am-agree-to-use-site');
+accept_use_this_site.onclick = function() {
+  hideCookieBanner()
+};
+document.addEventListener("DOMContentLoaded", function() {
+// Assigning values to window object
+window.onload = initializeCookieBanner();
+window.cb_hideCookieBanner = hideCookieBanner; 
+});
+
+
+</script>
+{% endblock footer_js_theme %}

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -73,10 +74,18 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'webapp.urls'
 
+
+THEME = "blue_line_theme"
+
+DIRS =  [
+    os.path.abspath(os.path.join(BASE_DIR,'themes/','base_theme')),
+    os.path.abspath(os.path.join(BASE_DIR,'themes/',THEME))
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': DIRS,
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,8 +145,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
+# URL used for static
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+# Where we could stay static?
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
