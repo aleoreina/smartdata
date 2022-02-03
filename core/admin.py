@@ -1,5 +1,22 @@
 from django.contrib import admin
 from core.models import Disclaimer
+from core.models import SnippetCollection, SnippetItem
+from core.models import PageProperties
+
+
+
+class SnippetItemAdmin(admin.ModelAdmin):
+    pass
+
+class SnippetCollectionAdmin(admin.ModelAdmin):
+    search_fields = ['name']
+    filter_horizontal = ('collection',)
+
+
+
+admin.site.register(SnippetItem, SnippetItemAdmin)
+admin.site.register(SnippetCollection,SnippetCollectionAdmin)
+
 
 @admin.register(Disclaimer)
 class DisclaimerAdmin(admin.ModelAdmin):

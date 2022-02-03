@@ -1,7 +1,5 @@
 from django.db import models
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes.fields import GenericForeignKey
-from core.models import AuditModel
+from core.models import AuditModel, SnippetCollection
 
 class PageProperties(AuditModel):
 
@@ -12,14 +10,14 @@ class PageProperties(AuditModel):
 	]
 
 	ROBOTS_CHOICES = [
-		("index, follow","All"),
-		("noindex, nofollow","None"),
-		("noindex, follow","No index, Follow"),
-		("index, nofollow","Index, No follow"),
-		("index","Index"),
-		("follow","Follow"),
-		("noindex","No index"),
-		("nofollow","No follow"),
+		("index, follow","Index Page, Follow All Links"),
+		("noindex, nofollow","No indexed, No follow links"),
+		("noindex, follow","No indexed, Following Links"),
+		("index, nofollow","Indexed, No Following Links"),
+		("index","Just Indexed (Attention)"),
+		("follow","Just Following Links (Attention)"),
+		("noindex","No indexed (Attention)"),
+		("nofollow","No followed links (Attention)"),
 	]
 
 	TYPE_CHOICES = [
@@ -35,3 +33,4 @@ class PageProperties(AuditModel):
 	type = models.CharField(verbose_name="Type of page", max_length=100,choices = TYPE_CHOICES ,default=TYPE_CHOICES[0][0])
 	slug = models.CharField(max_length=1000, unique=True)
 	status = models.CharField(choices=STATUS_CHOICES, default=STATUS_CHOICES[2][0], max_length=50)
+	snippet_collection = models.ForeignKey(SnippetCollection, related_name='pageproperties_snippetcollection', on_delete=models.DO_NOTHING)
