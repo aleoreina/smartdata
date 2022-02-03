@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import include, path
 from money_internet_affiliate.views import HomePageView
 from money_internet_affiliate.views.homepage import AffiliatePageView
+from money_internet_affiliate.views.homepage import TestView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name="homepage"),
     path('negocios-por-internet/columbustick', AffiliatePageView.as_view(), name="business-columbustick_profile"),
+    path('test-step', TestView.as_view(), name="test-viewbusiness-columbustick_profile"),
 ]

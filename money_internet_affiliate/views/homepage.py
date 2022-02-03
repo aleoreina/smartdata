@@ -8,3 +8,6 @@ class HomePageView(TemplateView):
 class AffiliatePageView(TemplateView):
     template_name = "money_internet_affiliate/affiliate_page_view.html"
 
+class TestView(TemplateView):
+    template_name = "money_internet_affiliate/testview.html"
+

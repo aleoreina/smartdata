@@ -7,3 +7,4 @@ class AuditModel (BaseModel):
 
     class Meta: 
         abstract = True
+

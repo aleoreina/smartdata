@@ -262,27 +262,20 @@ html body main.container.mt-5 div.p-4.p-md-5.mb-4.text-white.rounded.bg-dark {
     text-align: justify !important;
   }
 </style>
+
+{% if disclaimer_status == True %}
 <div id="TermsAndConditionsToUseWebSite" class="modal fade"  tabindex="-1">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <h5 class="col-12 modal-title text-center">¡ Bienvenido Usuario !</h5>
+              <h5 class="col-12 modal-title text-center">{{disclaimer_title}}</h5>
 
           </div>
 
        
           <div class="modal-body">
-            <div class="w-100 text-center fs-1"> 
-              <i class="bi bi-cash-coin"></i>
-              <i class="bi bi-emoji-smile text-center "></i>
-              <i class="bi bi-piggy-bank"></i>
-              <i class="bi bi-currency-bitcoin"></i>
-
-            </div>
             
-              <p class="justify-text-gb">Recuerden siempre y como en cualquier negocio es primero retirar su capital y después si se desea seguir con las ganancias entonces es cuando la persona ya corre CERO RIESGO! Se los anticipamos para que después no haya reclamaciones de ningún tipo hacia nuestras personas como administradores del grupo por que solo somos eso. No somos CEOS ni dueños de ninguno de estos negocios que mostramos en esta pagina somos socios como ustedes aquí simplemente somos administradores de una comunidad que ayuda a otros a conseguir dinero. Así que cada quien toma sus riesgos.</p>
-           
-              <p class="text-secondary"><small class="justify-text-gb">Al presionar "Estoy de Acuerdo", Usted acepta todo los terminos de uso de este sitio y que usted asume sus propios riegos y responsabilidades de los negocios.</small></p>
+              <p class="justify-text-gb">{{disclaimer_content}}</p>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" onclick="Exit()">No estoy de acuerdo</button>
@@ -291,6 +284,8 @@ html body main.container.mt-5 div.p-4.p-md-5.mb-4.text-white.rounded.bg-dark {
       </div>
   </div>
 </div>
+{% endif %}
+
 <footer id="footer">
   <div class="footer-newsletter">
       <div class="container">
@@ -345,12 +340,14 @@ html body main.container.mt-5 div.p-4.p-md-5.mb-4.text-white.rounded.bg-dark {
       <div class="credits"> Designed by <a href="#">SalvadorDevVE</a> </div>
   </div>
 </footer>
+
 {% endblock footer_html_header_theme %}
 
 {% block footer_js_theme %}
 <script src="https://getbootstrap.com/docs/5.1/dist/js/bootstrap.bundle.min.js"
 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
 </script>
+{% if disclaimer_status == True %}
 <script>
 function Exit() {
   window.location.href = "https://google.com";
@@ -394,4 +391,5 @@ window.cb_hideCookieBanner = hideCookieBanner;
 
 
 </script>
+{% endif %}
 {% endblock footer_js_theme %}
