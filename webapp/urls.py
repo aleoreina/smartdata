@@ -15,8 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('987654321/', admin.site.urls),
-    path('', include('money_internet_affiliate.urls'))
+    path(r'^_nested_admin/', include('nested_admin.urls')),
+    path('', include('blog.urls')),
+    path('', include('money_internet_affiliate.urls')),
+    path('summernote/', include('django_summernote.urls')),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

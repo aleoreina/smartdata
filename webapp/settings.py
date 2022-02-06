@@ -44,6 +44,9 @@ INSTALLED_APPS = [
 # Third Parties Libraries
 INSTALLED_PACKAGES_THIRD_PARTIES = [
     # 'django-celery' as example
+    'django_summernote',
+    'nested_admin'
+ 
 ]
 
 # Application definition
@@ -157,6 +160,10 @@ STATICFILES_DIRS = (
 
 # Where we could stay static?
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
