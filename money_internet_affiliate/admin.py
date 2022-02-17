@@ -1,10 +1,9 @@
 from django.contrib import admin
-from django_summernote.admin import SummernoteModelAdmin
 from money_internet_affiliate.models import AffiliatePage
 from money_internet_affiliate.models.affiliate_models import Steps, StepsItem, InviteLink, InviteLinkHistory
 import nested_admin
-
-
+from tinymce.widgets import TinyMCE
+from django.db import models
 
 class InviteLinkAdmin(nested_admin.NestedStackedInline):
     model = InviteLink
@@ -13,19 +12,21 @@ class InviteLinkAdmin(nested_admin.NestedStackedInline):
 
 class StepsItemAdmin(nested_admin.NestedStackedInline):
     model = StepsItem
-    extra = 1
+    extra = 0
+    formfield_overrides = {
+    models.TextField: {'widget': TinyMCE()}
+    }
 
 class StepsAdmin(nested_admin.NestedStackedInline):
     model = Steps
-    extra = 1
+    extra = 0
     inlines = [StepsItemAdmin]
 
 
-class AffiliatePageAdmin(nested_admin.NestedModelAdmin, SummernoteModelAdmin):
-    
+class AffiliatePageAdmin(nested_admin.NestedModelAdmin):  
     inlines = [StepsAdmin, InviteLinkAdmin]
     list_display = ('name', 'codename')
-    summernote_fields = '__all__'
+
 
 admin.site.register(AffiliatePage, AffiliatePageAdmin)
 

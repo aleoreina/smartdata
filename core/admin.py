@@ -1,8 +1,13 @@
 from django.contrib import admin
 from core.models import Disclaimer
 from core.models import SnippetCollection, SnippetItem
-from core.models import PageProperties
+from core.models import PageProperties, Subscription
 
+class SubscriptionAdmin(admin.ModelAdmin):
+    list_display = ('email', 'created_at')
+    readonly_fields = ('created_ip','created_country', )
+
+admin.site.register(Subscription, SubscriptionAdmin)
 
 
 class SnippetItemAdmin(admin.ModelAdmin):

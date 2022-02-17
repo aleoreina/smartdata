@@ -23,7 +23,8 @@ urlpatterns = [
     path(r'^_nested_admin/', include('nested_admin.urls')),
     path('', include('blog.urls')),
     path('', include('money_internet_affiliate.urls')),
-    path('summernote/', include('django_summernote.urls')),
+    path('tinymce/', include('tinymce.urls')),    
+    #ath('api/', include('core.urls_api'))
 ]
 
 

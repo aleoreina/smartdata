@@ -1,4 +1,5 @@
-"""webapp URL Configuration
+"""
+webapp URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
@@ -15,12 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from money_internet_affiliate.views import HomePageView
-from money_internet_affiliate.views.homepage import AffiliatePageView
-from money_internet_affiliate.views.homepage import TestView
+from core.tools.url_surrogate import URLSurrogate
+from money_internet_affiliate.views import HomePageView, AffiliatePageView
 
 urlpatterns = [
-    path('', HomePageView.as_view(), name="homepage"),
-    path('negocios-por-internet/columbustick', AffiliatePageView.as_view(), name="business-columbustick_profile"),
-    path('test-step', TestView.as_view(), name="test-viewbusiness-columbustick_profile"),
+    path('', HomePageView.as_view(), name="homepage")
 ]
+
+urlpatterns += URLSurrogate.generate_by_slug(
+    module_name="money_internet_affiliate",
+    model_name = "affiliatepage",
+    view_object = AffiliatePageView
+)
+
+
+

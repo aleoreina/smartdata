@@ -83,3 +83,5 @@ var/
 __pycache__/
 .env
 db.sqlite3
+
+static_collected/

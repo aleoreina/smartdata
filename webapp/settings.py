@@ -44,10 +44,9 @@ INSTALLED_APPS = [
 # Third Parties Libraries
 INSTALLED_PACKAGES_THIRD_PARTIES = [
     # 'django-celery' as example
-    'django_summernote',
+    'tinymce',
     'nested_admin'
- 
-]
+ ]
 
 # Application definition
 # Modules of Project
@@ -73,6 +72,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.middleware.RequestMiddleware'
 ]
 
 ROOT_URLCONF = 'webapp.urls'
@@ -80,7 +80,7 @@ ROOT_URLCONF = 'webapp.urls'
 
 THEME = "blue_line_theme"
 
-DIRS =  [
+DIRS =  [  
     os.path.abspath(os.path.join(BASE_DIR,'themes/','base_theme')),
     os.path.abspath(os.path.join(BASE_DIR,'themes/',THEME))
 ]
@@ -169,3 +169,36 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+TINYMCE_DEFAULT_CONFIG = {
+
+   'height': 360,
+   'width': 750,
+   'cleanup_on_startup': True,
+   'custom_undo_redo_levels': 20,
+   'selector': 'textarea',
+   'theme': 'silver',
+   'plugins': '''
+   textcolor save link image media preview codesample contextmenu
+   table code lists fullscreen insertdatetime nonbreaking
+   contextmenu directionality searchreplace wordcount visualblocks
+   visualchars code fullscreen autolink lists charmap print hr
+   anchor pagebreak
+   ''',
+   'toolbar1': '''
+   fullscreen preview bold italic underline | fontselect,
+   fontsizeselect | forecolor backcolor | alignleft alignright |
+   aligncenter alignjustify | indent outdent | bullist numlist table |
+   | link image media | codesample |
+   ''',
+   'toolbar2': '''
+   visualblocks visualchars |
+   charmap hr pagebreak nonbreakin./mg anchor | code |
+   ''',
+   'contextmenu': 'formats | link image',
+   'menubar': True,
+   'statusbar': True,
+}
+
+GEOIP_PATH = os.path.join(BASE_DIR, 'resources/geolocation-database')
