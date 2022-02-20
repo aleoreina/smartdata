@@ -23,11 +23,13 @@ urlpatterns = [
     path('', HomePageView.as_view(), name="homepage")
 ]
 
-urlpatterns += URLSurrogate.generate_by_slug(
-    module_name="money_internet_affiliate",
-    model_name = "affiliatepage",
-    view_object = AffiliatePageView
-)
-
+try:
+    urlpatterns += URLSurrogate.generate_by_slug(
+        module_name="money_internet_affiliate",
+        model_name = "affiliatepage",
+        view_object = AffiliatePageView
+    )
+except:
+    print ("Makemigrations doing.")
 
 

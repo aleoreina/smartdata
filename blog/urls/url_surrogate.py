@@ -6,8 +6,12 @@ from core.tools.url_surrogate import URLSurrogate
 
 urlpatterns = [
 ]
-urlpatterns += URLSurrogate.generate_by_slug(
-    module_name="blog",
-    model_name = "post",
-    view_object = BlogPostDetail
-)
+
+try: 
+    urlpatterns += URLSurrogate.generate_by_slug(
+        module_name="blog",
+        model_name = "post",
+        view_object = BlogPostDetail
+    )
+except:
+    print ("Makemigrations doing.")
