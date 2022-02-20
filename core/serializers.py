@@ -4,5 +4,5 @@ from core.models import Subscription
 class SubscriptionSerializer(serializers.ModelSerializer):
    class Meta:
        model = Subscription
-       fields = ('email')
+       fields = ('email', )
 

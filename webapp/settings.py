@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 # Application definition
@@ -63,7 +63,6 @@ INSTALLED_APPS = INSTALLED_APPS + APP_MODULES + INSTALLED_PACKAGES_THIRD_PARTIES
 # Proxy User Model
 AUTH_USER_MODEL = 'core.User'
 
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -76,7 +75,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'webapp.urls'
-
 
 THEME = "blue_line_theme"
 
@@ -97,7 +95,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'core.context_processors.pageproperties',
-                'core.context_processors.disclaimer'
+                'core.context_processors.disclaimer',
+                'core.context_processors.links_base_footer',
+                'core.context_processors.links_base_header'
             ],
         },
     },

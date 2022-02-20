@@ -11,6 +11,7 @@ class URLSurrogate (object):
     def generate_by_slug (self, **kwargs):
         
         view = kwargs.get('view_object')
+        prefix = kwargs.get('prefix') or None
 
         try:
             ct = ContentType.objects.get(
@@ -35,7 +36,12 @@ class URLSurrogate (object):
 
         try: 
             for object in objects:
-                urlpatterns += [path(object.slug, view.as_view(obj_id=object.id))]
+                print(prefix)
+                if prefix == None :
+                    slug = object.slug
+                else :
+                    slug = prefix + "/" + object.slug
+                urlpatterns += [path(slug, view.as_view(obj_id=object.id))]
         except: 
             pass
 

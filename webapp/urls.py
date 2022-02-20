@@ -24,7 +24,7 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('', include('money_internet_affiliate.urls')),
     path('tinymce/', include('tinymce.urls')),    
-    #ath('api/', include('core.urls_api'))
+    path('api/', include('core.urls_api'))
 ]
 
 

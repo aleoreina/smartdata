@@ -204,10 +204,11 @@ html body main.container.mt-5 div.p-4.p-md-5.mb-4.text-white.rounded.bg-dark {
 }
 
 </style>
-
+{% if no_header %} 
+{% else %}
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top" aria-label="Third navbar example">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Gana Dinero en Linea.com</a>
+      <a class="navbar-brand" href="{{ request.scheme }}://{{ request.get_host }}/">Gana Tu Dinero en Linea.com</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03"
         aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -238,24 +239,25 @@ html body main.container.mt-5 div.p-4.p-md-5.mb-4.text-white.rounded.bg-dark {
           </li>
           {% endcomment %}
         </ul>
-        <form class="d-flex">
-          <button class="btn btn-success redirect_counter" type="submit">Subscribete ya!</button>
-        </form>
+          <button class="btn btn-success redirect_counter" onclick="SubscribeteYaFocus()">Subscribete ya!</button>
       </div>
     </div>
   </nav>
-  
+  {% endif %}
+
 {% endblock header_html_header_theme %}
 
 {% block content_html_theme %}
 {% endblock content_html_theme %}
 
 {% block footer_html_header_theme %}
+{% if no_footer %}
 <footer class="footer fixed-bottom navbar_bottom_custom">
   <div class="container">
     <span class="">Recuerde: Toda inversión rentable tiene su índice de riesgo.</span>
   </div>
 </footer>
+{% endif %}
 
 <style>
   .justify-text-gb {
@@ -285,9 +287,11 @@ html body main.container.mt-5 div.p-4.p-md-5.mb-4.text-white.rounded.bg-dark {
   </div>
 </div>
 {% endif %}
-
+{% if no_footer %} 
+{% else %}
 <footer id="footer">
-  <div class="footer-newsletter">
+
+  <div id="footer-subscribe" class="footer-newsletter">
       <div class="container">
           <div class="row">
               <div class="col-lg-6">
@@ -295,41 +299,39 @@ html body main.container.mt-5 div.p-4.p-md-5.mb-4.text-white.rounded.bg-dark {
                   <p>Subscribete ya, Es gratis, Nosotros te enviamos la informacion gratis</p>
               </div>
               <div class="col-lg-6">
-                  <form action="" method="post"> <input type="email" name="email" placeholder="tucorreo@gmail.com"><input type="submit" value="Subscribete ya"> </form>
+                  <form id="subscribeteya_form">
+                     <input type="email" name="email" placeholder="tucorreo@gmail.com"><input type="submit" id="subscribete-button" value="Subscribete ya"> 
+
+                    </form>
               </div>
           </div>
       </div>
   </div>
+
   <div class="footer-top">
       <div class="container">
           <div class="row">
+            {% for footername in footernames %}
               <div class="col-lg-3 col-md-6 footer-links">
-                  <h4>Inversiones de bajo riesgo</h4>
+                  <h4>{{footername.name}}</h4>
                   <ul>
-                      <li><i class="bx bx-chevron-right"></i> <a href="#">PRODUCTO 1</a></li>
-                      <li><i class="bx bx-chevron-right"></i> <a href="#">PRODUCTO 2</a></li>
-                      <li><i class="bx bx-chevron-right"></i> <a href="#">PRODUCTO 3</a></li>
-                      <li><i class="bx bx-chevron-right"></i> <a href="#">PRODUCTO 4</a></li>
-                      <li><i class="bx bx-chevron-right"></i> <a href="#">PRODUCTO 5</a></li>
+                    {% for footerlink in footername.columnlinkfooter_set.all %}
+                    
+                      <li><i class="bx bx-chevron-right"></i> <a  
+                        {% if footerlink.use_custom_url %}
+                        href="{{footerlink.custom_url}}"
+                        {% else %}
+                        href="{{ request.scheme }}://{{ request.get_host }}/{{footerlink.pageproperties.slug}}"
+                        {% endif %}>{{footerlink.text}}</a></li>
+                    {% endfor %}
                   </ul>
               </div>
-              <div class="col-lg-3 col-md-6 footer-links">
-                  <h4>Gana sin meter dinero</h4>
-                  <ul>
-                      <li><i class="bx bx-chevron-right"></i> <a href="#">PRODUCTO A</a></li>
-                      <li><i class="bx bx-chevron-right"></i> <a href="#">PRODUCTO B</a></li>
-                      <li><i class="bx bx-chevron-right"></i> <a href="#">PRODUCTO C</a></li>
-                      <li><i class="bx bx-chevron-right"></i> <a href="#">PRODUCTO D</a></li>
-                      <li><i class="bx bx-chevron-right"></i> <a href="#">PRODUCTO E</a></li>
-                  </ul>
-              </div>
+              {% endfor %}
               <div class="col-lg-3 col-md-6 footer-contact">
-                  <h4>¡Contactanos!</h4>
-                  <p> California, 90210<br> United States <br><br> <strong>Phone:</strong> +1 123 456 789<br> <strong>Email:</strong> Contacto@ganadineroenline.com<br> </p>
               </div>
               <div class="col-lg-3 col-md-6 footer-info">
                   <h3>¿Acerca de nosotros?</h3>
-                  <p>Somos unas personas que queremos ayudar a los demas darle con informacion para hacer inversiones de negocios en linea para que generen un ingreso extra.</p>
+                  <p>Somos una pagina que queremos ayudar a los demas darle con informacion para hacer inversiones de negocios en linea para que generen un ingreso extra desde sus casas.</p>
                   <!--
                       <div class="social-links mt-3"> <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a> <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a> <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a> <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> 
                     
@@ -343,6 +345,7 @@ html body main.container.mt-5 div.p-4.p-md-5.mb-4.text-white.rounded.bg-dark {
       <div class="copyright"> © Copyright <strong><span>Gana Dinero en Linea</span></strong>. Todos los derechos reservados</div>
   </div>
 </footer>
+{% endif %}
 
 {% endblock footer_html_header_theme %}
 
@@ -365,16 +368,16 @@ function showCookieBanner(){
 
 /* Hides the Cookie banner and saves the value to localstorage */
 function hideCookieBanner(){
- localStorage.setItem("cb_isCookieAccepted", "yes");
+ localStorage.setItem("app2022_isCookieAccepted", "yes");
  TermsOfUseOfSite.hide();
 }
 
 /* Checks the localstorage and shows Cookie banner based on it. */
 function initializeCookieBanner(){
- let isCookieAccepted = localStorage.getItem("cb_isCookieAccepted");
+ let isCookieAccepted = localStorage.getItem("app2022_isCookieAccepted");
  if(isCookieAccepted === null)
  {
-  localStorage.setItem("cb_isCookieAccepted", "no");
+  localStorage.setItem("app2022_isCookieAccepted", "no");
   showCookieBanner();
  }
  if(isCookieAccepted === "no"){
@@ -393,6 +396,60 @@ window.cb_hideCookieBanner = hideCookieBanner;
 });
 
 
+
 </script>
 {% endif %}
+
+<script>
+
+    function position(elem) { 
+    var left = 0, 
+        top = 0; 
+
+    do { 
+        left += elem.offsetLeft-elem.scrollLeft; 
+        top += elem.offsetTop-elem.scrollTop; 
+    } while ( elem = elem.offsetParent ); 
+
+    return [ left, top ]; 
+} 
+var elem = document.getElementById('footer-subscribe');
+var footer_position = position(elem);
+    function SubscribeteYaFocus () {
+        window.location.hash = 'footer-subscribe';
+        document.body.scrollTop = document.documentElement.scrollTop = footer_position[1] * 0.90;
+    };
+
+  document.getElementById("subscribete-button").addEventListener("click", function(event){
+  event.preventDefault();
+
+  $.ajax({
+             url : "{{ request.scheme }}://{{ request.get_host }}/api/subscription/add/",
+             method : "post",
+             dataType: "json",
+             data: {'email' : "jose@gmail.com"},
+             beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRFToken', '{{csrf_token}}')
+    },
+             success : function (data) {
+
+                  alert("Perfecto, Ya registramos tu correo!");
+                    },
+             error : function (data) {
+                alert("El correo que intentas registrar ya existe.");
+             }
+                 });
+
+
+});
+
+
+</script>
+
+
+<script>
+
+  
+</script>
+
 {% endblock footer_js_theme %}

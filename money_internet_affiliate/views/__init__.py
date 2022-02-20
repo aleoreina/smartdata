@@ -1,2 +1,2 @@
 from .homepage import HomePageView
-from .product import AffiliatePageView
+from .product import AffiliatePageView, AffiliateRedirectPageView

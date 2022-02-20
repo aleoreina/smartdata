@@ -1,6 +1,6 @@
 from pickle import FALSE
 from django.conf import settings
-from core.models import PageProperties, Disclaimer
+from core.models import PageProperties, Disclaimer, FooterLink, HeaderLink
 
 def disclaimer (request):
 
@@ -63,3 +63,18 @@ def pageproperties(request):
         }
 
     return pageproperties
+
+def links_base_footer(request):
+    ctx = {}
+    footer = FooterLink()
+    footerlinks = FooterLink.get_links()
+    ctx["footerlinks"] = footerlinks.order_by('position')
+    ctx["footernames"] = FooterLink.objects.all()
+    return ctx
+
+def links_base_header(request):
+    ctx = {}
+    header = HeaderLink()
+    headerlinks = HeaderLink.get_links()
+    ctx["headerlinks"] = headerlinks.order_by('position')
+    return ctx

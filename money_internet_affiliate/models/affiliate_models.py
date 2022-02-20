@@ -1,17 +1,11 @@
-from enum import unique
-from tabnanny import verbose
-from django.db import models
 from django.db import models
 from django.forms import IntegerField, URLField
 from core.models import User
 from core.models import AuditModel
 from core.models import PageProperties
 
-
-
 def affiliate_page_product_path(instance, filename):
     return 'inversion/opcion/{0}'.format(filename)
-
 
 class AffiliatePage(PageProperties):
     name = models.CharField(max_length=50, verbose_name="Affilate Web Page / App : Name")    
@@ -22,8 +16,6 @@ class AffiliatePage(PageProperties):
     url = models.URLField(max_length=200, verbose_name="URL of reference  Web Page / App")
     codename = models.SlugField()
     telegram_group_link = models.URLField()
-
-
 
     @property
     def steps(self):

@@ -31,4 +31,20 @@ class AffiliatePageAdmin(nested_admin.NestedModelAdmin):
 admin.site.register(AffiliatePage, AffiliatePageAdmin)
 
 
+class InviteLinkHistoryAdmin(admin.ModelAdmin):  
+    list_display = ('created_at', 'invitelink__platform', 'invitelink__user')
+
+    @staticmethod
+    def invitelink__user(obj):
+        return obj.invitelink.user.first_name
+
+    @staticmethod
+    def invitelink__platform(obj):
+        return obj.invitelink.site.name
+
+
+admin.site.register(InviteLinkHistory, InviteLinkHistoryAdmin)
+
+
+
 

@@ -59,7 +59,7 @@
 <div class="pull-alert sticky-top">
   <div class="alert text-center text-white bg_gold">
 
-    <a class="stretched-link link-light" href="#"><strong><span class="blink_me fs-3">Toca aca y Registrate en
+    <a class="stretched-link link-light" href="{{ request.scheme }}://{{ request.get_host }}/gana-dinero-en-casa/{{object.slug}}"><strong><span class="blink_me fs-3">Toca aca y Registrate en
           {{object.name}} <br> </span></strong></a>
   </div>
 </div>
@@ -195,6 +195,8 @@
 
 
   {% block footer_js_theme %}
+   
+  {{ block.super }}
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
     integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
@@ -205,6 +207,8 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
   </script>
   <script>
+
+    
 
     {% for step in object.steps %}
 

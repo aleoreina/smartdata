@@ -34,3 +34,11 @@ class PageProperties(AuditModel):
 	slug = models.CharField(max_length=1000, unique=True, blank=True)
 	status = models.CharField(choices=STATUS_CHOICES, default=STATUS_CHOICES[2][0], max_length=50)
 	snippet_collection = models.ForeignKey(SnippetCollection, related_name='pageproperties_snippetcollection', on_delete=models.DO_NOTHING, blank=True)
+
+	def __str__ (self):
+		if self.slug == "" :
+			slug = "Home Page"
+		else :
+			slug = self.slug
+
+		return slug + " | " + self.h1

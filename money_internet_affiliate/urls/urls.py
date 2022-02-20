@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from core.tools.url_surrogate import URLSurrogate
-from money_internet_affiliate.views import HomePageView, AffiliatePageView
+from money_internet_affiliate.views import HomePageView, AffiliatePageView, AffiliateRedirectPageView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name="homepage")
@@ -29,5 +29,11 @@ urlpatterns += URLSurrogate.generate_by_slug(
     view_object = AffiliatePageView
 )
 
+urlpatterns += URLSurrogate.generate_by_slug(
+    module_name="money_internet_affiliate",
+    model_name = "affiliatepage",
+    prefix = "gana-dinero-en-casa",
+    view_object = AffiliateRedirectPageView
+)
 
 
