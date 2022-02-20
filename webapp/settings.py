@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from dotenv import load_dotenv
+load_dotenv()  # take environment variables from .env.
+
 from pathlib import Path
 import os
 
@@ -24,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6aq)32_v)-72yx_i1ace13hl#&d1go^e0#ibdncw$u*64kcdk@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -109,12 +112,33 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if os.getenv('DATABASE_MANAGER') == "sqlite3" :
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+
+if os.getenv('DATABASE_MANAGER') == "postgres" :
+    DATABASES = {
+
+        'default': {
+
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+            'NAME': os.getenv('DATABASE_NAME'),
+
+            'USER': os.getenv('DATABASE_USERNAME'),
+
+            'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+
+            'HOST': os.getenv('DATABASE_HOST'),
+
+            'PORT': os.getenv('DATABASE_PORT'),
+
+        }
+    }
 
 
 # Password validation
