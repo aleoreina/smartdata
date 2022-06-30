@@ -10,11 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
+from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()  # take environment variables from .env.
 
-from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -49,18 +49,17 @@ INSTALLED_PACKAGES_THIRD_PARTIES = [
     # 'django-celery' as example
     'tinymce',
     'nested_admin'
- ]
+]
 
 # Application definition
 # Modules of Project
 APP_MODULES = [
-    'core', 
-    'money_internet_affiliate',
+    'core',
     'blog',
     'page'
 ]
 
-#Merge 3in1 Installed App per much better organization
+# Merge 3in1 Installed App per much better organization
 INSTALLED_APPS = INSTALLED_APPS + APP_MODULES + INSTALLED_PACKAGES_THIRD_PARTIES
 
 # Proxy User Model
@@ -79,11 +78,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'webapp.urls'
 
-THEME = "blue_line_theme"
+THEME = "admin_lte"
 
-DIRS =  [  
-    os.path.abspath(os.path.join(BASE_DIR,'themes/','base_theme')),
-    os.path.abspath(os.path.join(BASE_DIR,'themes/',THEME))
+DIRS = [
+    os.path.abspath(os.path.join(BASE_DIR, 'themes/', 'base_theme')),
+    os.path.abspath(os.path.join(BASE_DIR, 'themes/', THEME))
 ]
 
 TEMPLATES = [
@@ -112,7 +111,7 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-if os.getenv('DATABASE_MANAGER') == "sqlite3" :
+if os.getenv('DATABASE_MANAGER') == "sqlite3":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -120,7 +119,7 @@ if os.getenv('DATABASE_MANAGER') == "sqlite3" :
         }
     }
 
-if os.getenv('DATABASE_MANAGER') == "postgres" :
+if os.getenv('DATABASE_MANAGER') == "postgres":
     DATABASES = {
 
         'default': {
@@ -197,32 +196,32 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 TINYMCE_DEFAULT_CONFIG = {
 
-   'height': 360,
-   'width': 750,
-   'cleanup_on_startup': True,
-   'custom_undo_redo_levels': 20,
-   'selector': 'textarea',
-   'theme': 'silver',
-   'plugins': '''
+    'height': 360,
+    'width': 750,
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 20,
+    'selector': 'textarea',
+    'theme': 'silver',
+    'plugins': '''
    textcolor save link image media preview codesample contextmenu
    table code lists fullscreen insertdatetime nonbreaking
    contextmenu directionality searchreplace wordcount visualblocks
    visualchars code fullscreen autolink lists charmap print hr
    anchor pagebreak
    ''',
-   'toolbar1': '''
+    'toolbar1': '''
    fullscreen preview bold italic underline | fontselect,
    fontsizeselect | forecolor backcolor | alignleft alignright |
    aligncenter alignjustify | indent outdent | bullist numlist table |
    | link image media | codesample |
    ''',
-   'toolbar2': '''
+    'toolbar2': '''
    visualblocks visualchars |
    charmap hr pagebreak nonbreakin./mg anchor | code |
    ''',
-   'contextmenu': 'formats | link image',
-   'menubar': True,
-   'statusbar': True,
+    'contextmenu': 'formats | link image',
+    'menubar': True,
+    'statusbar': True,
 }
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'resources/geolocation-database')

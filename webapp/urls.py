@@ -22,11 +22,13 @@ urlpatterns = [
     path('987654321/', admin.site.urls),
     path(r'^_nested_admin/', include('nested_admin.urls')),
     path('', include('blog.urls')),
-    path('', include('money_internet_affiliate.urls')),
-    path('tinymce/', include('tinymce.urls')),    
-    path('api/', include('core.urls_api'))
+    path('tinymce/', include('tinymce.urls')),
+    path('api/', include('core.urls_api')),
+    path('', include('core.urls_static'))
+
 ]
 
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
